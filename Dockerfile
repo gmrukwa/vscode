@@ -15,6 +15,8 @@ RUN apt-get update --fix-missing && \
       # polyaxon
       gcc \
       python3-dev \
+      # other
+      make \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
