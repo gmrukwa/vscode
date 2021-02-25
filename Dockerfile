@@ -21,7 +21,7 @@ RUN apt-get update --fix-missing && \
 
 USER coder
 
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O ~/miniconda.sh && \
     sudo /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     sudo chmod -R 775 /opt/conda && \
     sudo chgrp -R coder /opt/conda && \
@@ -31,9 +31,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-RUN . /opt/conda/etc/profile.d/conda.sh && \
-    conda activate base && \
-    conda install -y certifi>=2019.9.11 python=3.7 && \
-    pip install polyaxon==1.1.9
-
-RUN code-server --install-extension shan.code-settings-sync
+RUN code-server --install-extension shan.code-settings-sync && \
+    code-server --install-extension ms-python.python@2020.10.332292344
+    
+SHELL ["/bin/bash", "-c"]
