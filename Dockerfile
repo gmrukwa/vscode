@@ -1,4 +1,4 @@
-FROM codercom/code-server:latest
+FROM codercom/code-server:3.9.1
 
 SHELL ["/bin/bash", "-c"]
 
