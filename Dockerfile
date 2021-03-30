@@ -1,4 +1,4 @@
-FROM codercom/code-server:3.9.1
+FROM codercom/code-server:3.9.2
 
 SHELL ["/bin/bash", "-c"]
 
@@ -17,9 +17,15 @@ RUN apt-get update --fix-missing && \
       python3-dev \
       # other
       make \
+      htop \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+    
+# Patch for Safari to work
+# See more: https://github.com/cdr/code-server/issues/2975#issuecomment-808070195
+RUN sed -i "s/req.headers\[\"sec-websocket-extensions\"\]/false/g" /usr/lib/code-server/out/node/routes/vscode.js && \
+    sed -i "s/responseHeaders.push(\"Sec-WebSocket-Extensions/\/\/responseHeaders.push(\"Sec-WebSocket-Extensions/g" /usr/lib/code-server/out/node/routes/vscode.js
 
 USER coder
 
