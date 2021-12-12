@@ -1,4 +1,4 @@
-FROM codercom/code-server:3.9.2
+FROM codercom/code-server:3.12.0
 
 SHELL ["/bin/bash", "-c"]
 
@@ -39,7 +39,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-RUN code-server --install-extension shan.code-settings-sync && \
-    code-server --install-extension ms-python.python@2020.10.332292344
+RUN mkdir -p /home/coder/.config
+
+RUN code-server --install-extension shan.code-settings-sync
     
 SHELL ["/bin/bash", "-c"]
