@@ -39,7 +39,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-RUN git config --global credential.helper cache
+RUN git config --global credential.helper store
 
 RUN mkdir -p /home/coder/.config && \
     code-server --install-extension shan.code-settings-sync
