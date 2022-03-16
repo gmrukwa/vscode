@@ -1,4 +1,4 @@
-FROM codercom/code-server:3.12.0
+FROM codercom/code-server:4.1.0
 
 SHELL ["/bin/bash", "-c"]
 
@@ -18,6 +18,8 @@ RUN apt-get update --fix-missing && \
       # other
       make \
       htop \
+      tmux \
+      rclone \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
